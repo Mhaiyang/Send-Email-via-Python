@@ -3,11 +3,12 @@ import os
 from email.mime.text import MIMEText
 from email.header import Header
 
-secret_path = os.path.join('excel_info_sending', "secret.txt")
-with open(secret_path) as f:
-    content = f.readlines()
-    EMAIL_NAME = content[0]
-    SECRET_KEY = content[1]
+me_path = "me.txt"
+# me_path = os.path.join('send_message', "me.txt")
+with open(me_path) as f:
+    setting = f.readlines()
+    EMAIL_NAME = setting[0]
+    SECRET_KEY = setting[1]
 
 mail_host="smtp.qq.com"  #设置服务器
 mail_user=EMAIL_NAME    #用户名
