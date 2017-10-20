@@ -1,8 +1,8 @@
 # Send Email via Python
-自动将excel中的信息发送到不同邮件地址。适用于将不同的信息发送到对应的邮箱地址中。
+Automatically send the information in excel to a different e-mail address, which is used to send different information to the corresponding e-mail address.
 
-主程序为index.py，excel表格命名为info.xlsx。第四列为要发送的信息。
+The main program is index.py, and the excel table is named info.xlsx. The fourth column is the information to be sent.
 
-me.txt存储自己的邮件地址和密码（例如QQ邮箱需要在设置账户中开启SMTP）
+me.txt store their own e-mail address and password (such as QQ mailboxes need to set up in the account to open SMTP)
 
-然后python index.py即可。
+Then python index.py.
