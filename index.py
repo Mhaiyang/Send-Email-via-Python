@@ -1,24 +1,25 @@
-import xlrd
+import xlrd     # excel module
 import os
 from sendemail import send
 
-excel_path = os.path.join('excel_info_sending', "tmp", "info.xls")  # 自行导入，本例中第一列是学号，第二列是要发送的密码，第三列是姓名，第四列是邮箱
+excel_path = "info.xlsx"
+# excel_path = os.path.join('send_message', "info.xlsx")  # 0列：学号 1列：姓名 2列：邮箱地址 3列：需要发送的信息
 data = xlrd.open_workbook(excel_path)
-table = data.sheets()[0]
+table = data.sheets()[0]    # sheet 0
 nrows = table.nrows
-for i in range(nrows): 
+for i in range(1, nrows): 
     data = table.row_values(i)
-    name = data[2]
-    emailaddr = data[3]
-    password = data[1]
-    subject = "心理测评密码"
+    id = data[0]
+    name = data[1]
+    emailaddr = data[2]
+    message = data[3]
+    subject = "测试邮件"
     content = """
-        <p>网址：http://xinli.gzedu.com/</p>
-        <p>%s你好，你的心理测评密码为：%s</p>
+        <p>%s你好，%s, 这是一封测试邮件~</p>
+        <p>记得做心理测评,需要在23日八点前完成</p>
+        <p>测试网址：http://xinli.gzedu.com/</p>
         <p>学校代码为:10141</p>
-        <p>请大家在22日（周日）中午前完成！务必！以免被通报批评！</p>
-        <p>因为密码必须私自发给你们，所以选用了这种方式哈哈。填写时如果有问题请QQ找我。</p>
-        <p>from：爱你们的班长</p>
-    """ % (name, password)
+        <p>from：TaylorMei</p>
+    """ % (message, id) 
     back = send(name, emailaddr, content, subject)
     print(back)
